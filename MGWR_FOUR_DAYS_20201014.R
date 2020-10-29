@@ -1,5 +1,5 @@
 Sys.setlocale(locale="English_United Kingdom")
-setwd("d:/WORKSPACE/COVID19/MODEL/FINAL/MGWR/SHP")
+## please set up your workplace
 
 require(sf)
 require(ggplot2)
@@ -9,9 +9,9 @@ require(maptools)
 require(rgdal)
 require(ggspatial)
 require(extrafont)
-loadfonts(device = "win")
+loadfonts(device = "win") #option to use TSU's offical font - Raleway for map annotation
 
-ccg.d1<-st_read("MGWR_D1_RESULTS_CCG.shp")
+ccg.d1<-st_read("MGWR_D1_RESULTS_CCG.shp") #would be also upload the geojson format soon
 ccg.d2<-st_read("MGWR_D2_RESULTS_CCG.shp")
 ccg.d3<-st_read("MGWR_D3_RESULTS_CCG.shp")
 ccg.d4<-st_read("MGWR_D4_RESULTS_CCG.shp")
@@ -88,47 +88,6 @@ mgwr.r2.d4<- ggplot(ccg.d4)+geom_sf(aes(fill = cut_number(localR2,5)),alpha = 0.
   geom_text(data=la.coords, aes(X, Y, label = NAME), colour = "Black",size=6,family="Raleway", fontface="bold")+
   geom_sf(data=eng.la,fill=NA,color="black",size=1,show.legend=FALSE)
 ggsave("d:/WORKSPACE/COVID19/REVISE_LAST/mgwr.r2.d4.png", width=400, height=400, units = "mm", dpi = 300, bg = "white")
-
-##local r2
-mgwr.r2.d1<-tm_shape(ccg.d1) +
-  tm_fill("localR2",title="Local R2 for 24 March 2020",n=5,style="jenks")  +
-  tm_borders(col = "black",lwd=0.001) + tm_compass() + tm_scale_bar() +
-  tm_layout(frame = FALSE)+
-  tm_layout(title = "Adj. R2", title.position = c("left","top"))
- 
-mgwr.r2.d2<-tm_shape(ccg.d2) +
-  tm_fill("localR2",title="Local R2 for 31 March 2020",n=5,style="jenks")  +
-  tm_borders(col = "black",lwd=0.001) + tm_compass() + tm_scale_bar() +
-  tm_layout(frame = FALSE)+
-  tm_layout(title = "Adj. R2", title.position = c("left","top"))
-
-mgwr.r2.d3<-tm_shape(ccg.d3) +
-  tm_fill("localR2",title="Local R2 for 7 April 2020",n=5,style="jenks")  +
-  tm_borders(col = "black",lwd=0.001) + tm_compass() + tm_scale_bar() +
-  tm_layout(frame = FALSE)+
-  tm_layout(title = "Adj. R2", title.position = c("left","top"))
-
-mgwr.r2.d4<-tm_shape(ccg.d4) +
-  tm_fill("localR2",title="Local R2 for 14 April 2020",n=5,style="jenks")  +
-  tm_borders(col = "black",lwd=0.001) + tm_compass() + tm_scale_bar() +
-  tm_layout(frame = FALSE)+
-  tm_layout(title = "Adj. R2", title.position = c("left","top"))
-
-pdf(file='mgwr.r2.d1.pdf')
-print(mgwr.r2.d1)
-dev.off()
-    
-pdf(file='mgwr.r2.d2.pdf')
-print(mgwr.r2.d2)
-dev.off()
-
-pdf(file='mgwr.r2.d3.pdf')
-print(mgwr.r2.d3)
-dev.off()
-
-pdf(file='mgwr.r2.d4.pdf')
-print(mgwr.r2.d4)
-dev.off()
 
 ##beta_Inter, beta_INC_8, beta_NOT_S, beta_SG_C1, beta_POP_D, beta_slf_m, beta_H_06
 
