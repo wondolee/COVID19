@@ -1,6 +1,11 @@
 ## Introduction
 This is a repository to provide both R codes and public datasets necessary for the replication of the analysis results and figures on the paper entitle to ["The association between socioeconomic status and mobility reductions in the early stage of England’s COVID-19 pandemic"](https://www.medrxiv.org/content/10.1101/2020.10.28.20221770v1), which is under the review on the journal of *Health & Place*.
 
+## Authors
+* Won Do Lee ([Transport Studies Unit](https://www.tsu.ox.ac.uk/people/wdlee.html), School of Geography and the Environment, University of Oxford)
+* Matthias Qian ([Saïd Business School](https://www.sbs.ox.ac.uk/about-us/people/matthias-qian), University of Oxford)
+* Tim Schwanen ([Transport Studies Unit](https://www.tsu.ox.ac.uk/people/tschwanen.html), School of Geography and the Environment, University of Oxford)
+
 ## Running the R Code
 Please check the instructions on the code folder in advance.
 
