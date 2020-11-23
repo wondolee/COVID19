@@ -1,5 +1,5 @@
 ## Introduction
-This is a repository to provide both R codes and public datasets necessary for the replication of the analysis results and figures on the paper entitle to "The association between socioeconomic status and mobility reductions in the early stage of England’s COVID-19 pandemic", which is under the review on the jouranl of * Health & Place *.
+This is a repository to provide both R codes and public datasets necessary for the replication of the analysis results and figures on the paper entitle to "The association between socioeconomic status and mobility reductions in the early stage of England’s COVID-19 pandemic", which is under the review on the journal of *Health & Place*.
 
 ## Running the R Code
 Please check the instructions on the code folder in advance.
