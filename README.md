@@ -1,4 +1,3 @@
-How socioeconomic status was associated with the extent of mobility reduction during the Spring 2020 lockdown in England
 ![ass_mob_eco](https://user-images.githubusercontent.com/61145109/99924646-752dd800-2d7e-11eb-8f00-a71b70349b29.png)
 
 ## Introduction
