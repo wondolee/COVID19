@@ -17,4 +17,4 @@ This work is free. You can modify under a [CC-BY-ND 4.0 International license](h
 ## Acknowlegements
 The authors would like to thank [CKDelta](https://www.ckdelta.ie) company as the project partner of [“Oxford COVID-19 Impact Monitor”](https://www.oxford-covid-19.com), to provide a wide array of anonymised and aggregated data. This research did not receive any specific grant from funding agencies in the public, commercial, or not-for-profit sectors.
 
-For more information on this research project, please contact [Won Do Lee](wondo.lee@ouce.ox.ac.uk)
+For more information on this research project, please contact [Won Do Lee](mailto:wondo.lee@ouce.ox.ac.uk)
