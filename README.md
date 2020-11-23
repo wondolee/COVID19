@@ -1,5 +1,5 @@
-![ass_mob_eco](https://user-images.githubusercontent.com/61145109/99924646-752dd800-2d7e-11eb-8f00-a71b70349b29.png)
 ## How socioeconomic status was associated with the extent of mobility reduction during the Spring 2020 lockdown in England
+![ass_mob_eco](https://user-images.githubusercontent.com/61145109/99924646-752dd800-2d7e-11eb-8f00-a71b70349b29.png)
 
 ## Introduction
 This is a repository to provide both R codes and public datasets necessary for the replication of the analysis results and figures on the paper entitle to ["The association between socioeconomic status and mobility reductions in the early stage of England’s COVID-19 pandemic"](https://www.medrxiv.org/content/10.1101/2020.10.28.20221770v1), which is under the review on the journal of *Health & Place*.
