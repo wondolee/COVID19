@@ -1,7 +1,7 @@
 ![ass_mob_eco](https://user-images.githubusercontent.com/61145109/99924646-752dd800-2d7e-11eb-8f00-a71b70349b29.png)
 
 ## Introduction
-This is a repository to provide R codes with public datasets necessary for the replication of the analysis results and figures on the paper entitle to ["The association between socioeconomic status and mobility reductions in the early stage of England’s COVID-19 pandemic"](https://www.medrxiv.org/content/10.1101/2020.10.28.20221770v1), which is under the review on the journal of *Health & Place*.
+This is a repository to provide R codes with public datasets necessary for the replication of the analysis results and figures on the paper entitle to ["The association between socioeconomic status and mobility reductions in the early stage of England’s COVID-19 epidemic"](https://doi.org/10.1101/2020.10.28.20221770), which has been accepted to the journal of *Health & Place*.
 
 ## Authors
 * Won Do Lee ([Transport Studies Unit](https://www.tsu.ox.ac.uk/people/wdlee.html), School of Geography and the Environment, University of Oxford)
