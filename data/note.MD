@@ -5,7 +5,7 @@ This file contains the digital vector boundaries for Clinical Commissioning Grou
 (BUC) Ultra generalised (500m) - clipped to the coastline (Mean High Water mark). For more information, please visit the ONS Open Geography Portal.
 
 ### Explanatory variables have collected from NOMIS website, and processed by author
-For more information on this data resources, please contact [Won Do Lee](wondo.lee@ouce.ox.ac.uk).
+For more information on this data resources, please contact [Won Do Lee](mailto:wondo.lee@ouce.ox.ac.uk).
 
 
 
