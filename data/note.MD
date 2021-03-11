@@ -4,7 +4,8 @@
 This file contains the digital vector boundaries for Clinical Commissioning Groups in England as at April 2019. The boundaries available are:
 (BUC) Ultra generalised (500m) - clipped to the coastline (Mean High Water mark). For more information, please visit the ONS Open Geography Portal.
 
-### Explanatory variables collect from NOMIS website, and processed
+### Explanatory variables have collected from NOMIS website, and processed by author
+For more information on this data resources, please contact [Won Do Lee](wondo.lee@ouce.ox.ac.uk).
 
 
 
