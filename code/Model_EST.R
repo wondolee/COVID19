@@ -7,7 +7,7 @@ require(raster)
 require(rgdal)
 
 ###Importing the input data 
-ccg.spoly<-readRDS("ccg.spoly.geojson")
+ccg.spoly<-st_read("ccg.spoly.geojson")
 ccg.spoly$H_06<-ccg.spoly$H_04+ccg.spoly$H_05 ##Updating the variable of share of population in bad health; H_04 (bad health) and H_05 (very bad health)
 
 ###Building the OLS models: d1;24 March, d2;31 March, d3; 7 April, and d4; 14 April 2020.
@@ -45,17 +45,17 @@ lm.test.d3<-lm.LMtests(step.model.d3, listw2U(knear4nb), test = c("LMerr","LMlag
 lm.test.d4<-lm.LMtests(step.model.d4, listw2U(knear4nb), test = c("LMerr","LMlag","RLMerr","RLMlag","SARMA"))
 
 ##Building the spatial lag model
-lag.model.d1<-lagsarlm(scale(PER1) ~ scale(NOT_SPE) + scale(POP_DEN)+ scale(INC_80) + scale(slf_mpl)+scale(SG_C1)+scale(H_06), data = ccg.spoly,listw2U(knear4nb))
-lag.model.d2<-lagsarlm(scale(PER2) ~ scale(NOT_SPE) + scale(POP_DEN)+ scale(INC_80) + scale(slf_mpl)+scale(SG_C1)+scale(H_06), data = ccg.spoly,listw2U(knear4nb))
-lag.model.d3<-lagsarlm(scale(PER3) ~ scale(NOT_SPE) + scale(POP_DEN)+ scale(INC_80) + scale(slf_mpl)+scale(SG_C1)+scale(H_06), data = ccg.spoly,listw2U(knear4nb))
-lag.model.d4<-lagsarlm(scale(PER4) ~ scale(NOT_SPE) + scale(POP_DEN)+ scale(INC_80) + scale(slf_mpl)+scale(SG_C1)+scale(H_06), data = ccg.spoly,listw2U(knear4nb))
+lag.model.d1<-lagsarlm(scale(PER1) ~ scale(NOT_SPE) + scale(POP_DEN)+ scale(INC_80) + scale(slf_mpl)+scale(SG_C1)+scale(H_06), data = as(ccg.spoly,"Spatial"),listw2U(knear4nb))
+lag.model.d2<-lagsarlm(scale(PER2) ~ scale(NOT_SPE) + scale(POP_DEN)+ scale(INC_80) + scale(slf_mpl)+scale(SG_C1)+scale(H_06), data = as(ccg.spoly,"Spatial"),listw2U(knear4nb))
+lag.model.d3<-lagsarlm(scale(PER3) ~ scale(NOT_SPE) + scale(POP_DEN)+ scale(INC_80) + scale(slf_mpl)+scale(SG_C1)+scale(H_06), data = as(ccg.spoly,"Spatial"),listw2U(knear4nb))
+lag.model.d4<-lagsarlm(scale(PER4) ~ scale(NOT_SPE) + scale(POP_DEN)+ scale(INC_80) + scale(slf_mpl)+scale(SG_C1)+scale(H_06), data = as(ccg.spoly,"Spatial"),listw2U(knear4nb))
 
 ##Building the spatial error model
-err.model.d1<-errorsarlm(scale(PER1) ~ scale(NOT_SPE) + scale(POP_DEN)+ scale(INC_80) + scale(slf_mpl)+scale(SG_C1)+scale(H_06), data = ccg.spoly,listw2U(knear4nb))
-err.model.d2<-errorsarlm(scale(PER2) ~ scale(NOT_SPE) + scale(POP_DEN)+ scale(INC_80) + scale(slf_mpl)+scale(SG_C1)+scale(H_06), data = ccg.spoly,listw2U(knear4nb))
-err.model.d3<-errorsarlm(scale(PER3) ~ scale(NOT_SPE) + scale(POP_DEN)+ scale(INC_80) + scale(slf_mpl)+scale(SG_C1)+scale(H_06), data = ccg.spoly,listw2U(knear4nb))
-err.model.d4<-errorsarlm(scale(PER4) ~ scale(NOT_SPE) + scale(POP_DEN)+ scale(INC_80) + scale(slf_mpl)+scale(SG_C1)+scale(H_06), data = ccg.spoly,listw2U(knear4nb))
-summary(lag.model.d1,Nagelkerke=T) ##retaining the pseudo R2 for spatial autoregressive models
+err.model.d1<-errorsarlm(scale(PER1) ~ scale(NOT_SPE) + scale(POP_DEN)+ scale(INC_80) + scale(slf_mpl)+scale(SG_C1)+scale(H_06), data = as(ccg.spoly,"Spatial"),listw2U(knear4nb))
+err.model.d2<-errorsarlm(scale(PER2) ~ scale(NOT_SPE) + scale(POP_DEN)+ scale(INC_80) + scale(slf_mpl)+scale(SG_C1)+scale(H_06), data = as(ccg.spoly,"Spatial"),listw2U(knear4nb))
+err.model.d3<-errorsarlm(scale(PER3) ~ scale(NOT_SPE) + scale(POP_DEN)+ scale(INC_80) + scale(slf_mpl)+scale(SG_C1)+scale(H_06), data = as(ccg.spoly,"Spatial"),listw2U(knear4nb))
+err.model.d4<-errorsarlm(scale(PER4) ~ scale(NOT_SPE) + scale(POP_DEN)+ scale(INC_80) + scale(slf_mpl)+scale(SG_C1)+scale(H_06), data = as(ccg.spoly,"Spatial"),listw2U(knear4nb))
+#summary(lag.model.d1,Nagelkerke=T) ##retaining the pseudo R2 for spatial autoregressive models
 
 ###GW model
 require(GWmodel)
@@ -74,10 +74,10 @@ gwr.bwd.d3 <- bw.gwr(reg3.mod, as(ccg.spoly,"Spatial"), approach="AICc", kernel=
 gwr.bwd.d4 <- bw.gwr(reg4.mod, as(ccg.spoly,"Spatial"), approach="AICc", kernel="bisquare", adaptive=TRUE, dMat=dist)
 
 ##Building the GWR model - using Adaptive bi-square kernel
-mod.GWR.d1 <- gwr.basic(reg1.mod, data = as(ccg.spoly,"Spatial"), bw = gwr.bwd.f1, kernel="bisquare", adaptive=TRUE, dMat=dist)
-mod.GWR.d2 <- gwr.basic(reg2.mod, data = as(ccg.spoly,"Spatial"), bw = gwr.bwd.f2, kernel="bisquare", adaptive=TRUE, dMat=dist)
-mod.GWR.d3 <- gwr.basic(reg3.mod, data = as(ccg.spoly,"Spatial"), bw = gwr.bwd.f3, kernel="bisquare", adaptive=TRUE, dMat=dist)
-mod.GWR.d4 <- gwr.basic(reg4.mod, data = as(ccg.spoly,"Spatial"), bw = gwr.bwd.f4, kernel="bisquare", adaptive=TRUE, dMat=dist)
+mod.GWR.d1 <- gwr.basic(reg1.mod, data = as(ccg.spoly,"Spatial"), bw = gwr.bwd.d1, kernel="bisquare", adaptive=TRUE, dMat=dist)
+mod.GWR.d2 <- gwr.basic(reg2.mod, data = as(ccg.spoly,"Spatial"), bw = gwr.bwd.d2, kernel="bisquare", adaptive=TRUE, dMat=dist)
+mod.GWR.d3 <- gwr.basic(reg3.mod, data = as(ccg.spoly,"Spatial"), bw = gwr.bwd.d3, kernel="bisquare", adaptive=TRUE, dMat=dist)
+mod.GWR.d4 <- gwr.basic(reg4.mod, data = as(ccg.spoly,"Spatial"), bw = gwr.bwd.d4, kernel="bisquare", adaptive=TRUE, dMat=dist)
 
 ##Exporting the outcomes of GWR model estimation results into SpatialPolygonsDataFrame
 new.gwr.m3.d1<-mod.GWR.d1$SDF
